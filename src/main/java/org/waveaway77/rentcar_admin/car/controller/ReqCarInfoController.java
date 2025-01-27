@@ -31,7 +31,7 @@ public class ReqCarInfoController {
         }
 
         if (request.getCategory().isEmpty()
-        || request.getPageNo() == 0
+        || request.getPageNo() < 0
         || request.getPageSize() == 0) {
             // todo logger
             throw new Exception();

@@ -23,4 +23,10 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
             @Param("company") String company,
             @Param("prodYear") String prodYear
             );
+
+    Page<Car> findByCategoryAndStatus(
+            String category
+            , String status
+            , PageRequest pageRequest
+    );
 }
