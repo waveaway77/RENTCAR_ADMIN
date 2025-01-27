@@ -6,9 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.waveaway77.rentcar_admin.car.dto.FixCarRequest;
-import org.waveaway77.rentcar_admin.car.dto.FixCarResponse;
-import org.waveaway77.rentcar_admin.car.entity.Car;
+import org.waveaway77.rentcar_admin.car.dto.FixCarInfoRequest;
+import org.waveaway77.rentcar_admin.car.dto.FixCarInfoResponse;
 import org.waveaway77.rentcar_admin.car.repository.CarRepository;
 
 @RestController
@@ -18,7 +17,7 @@ public class FixCarInfoController {
     CarRepository repository;
 
     @PostMapping("/fixcarinfo")
-    public ResponseEntity<?> fixCarInfo(@RequestBody FixCarRequest request) throws Exception {
+    public ResponseEntity<?> fixCarInfo(@RequestBody FixCarInfoRequest request) throws Exception {
 
         /* 0. validation check */
         if (request.getCategory().isEmpty() || request.getProdYear().isEmpty() || request.getCompany().isEmpty() || request.getModel().isEmpty()) {
@@ -26,7 +25,6 @@ public class FixCarInfoController {
             throw new Exception();
         }
 
-        Car carEntity = request.saveCar(request.getCarId(), request.getCategory(), request.getProdYear(), request.getCompany(), request.getModel());
         repository.updateCarInfo(
                 request.getCarId()
                 , request.getCategory()
@@ -36,7 +34,7 @@ public class FixCarInfoController {
                 , request.getUpdatedAt()
         );
 
-        FixCarResponse response = new FixCarResponse(HttpStatus.OK);
+        FixCarInfoResponse response = new FixCarInfoResponse(HttpStatus.OK);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

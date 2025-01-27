@@ -8,10 +8,10 @@ import org.springframework.http.HttpStatus;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FixCarResponse {
+public class FixCarInfoResponse {
     private HttpStatus status;
 
-    public FixCarResponse(HttpStatus status) {
+    public FixCarInfoResponse(HttpStatus status) {
         this.status = status;
     }
 }

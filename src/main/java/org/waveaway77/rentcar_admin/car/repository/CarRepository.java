@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.waveaway77.rentcar_admin.car.entity.Car;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
@@ -48,6 +49,17 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
             , @Param("prodYear") String prodYear
             , @Param("company") String company
             , @Param("model") String model
+            , @Param("updatedAt") LocalDateTime updatedAt
+    );
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Car c SET c.status = :status" +
+            ", c.updatedAt = :updatedAt" +
+            " WHERE c.carId in (:carId)")
+    void updateCarStatus(
+            @Param("carId") int[] carId
+            , @Param("status") String status
             , @Param("updatedAt") LocalDateTime updatedAt
     );
 
