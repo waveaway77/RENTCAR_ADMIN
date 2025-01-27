@@ -5,16 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegCarRequest {
-    private String car_id = "";
+    private int carId;
     private String category = "";
     private String prodYear = "";
     private String company = "";
     private String model = "";
     private String status = "";
-    private String createdAt = "";
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
