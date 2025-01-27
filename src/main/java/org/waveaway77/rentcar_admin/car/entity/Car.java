@@ -36,9 +36,7 @@ public class Car {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Builder
-
-    public Car(int carId, String category, String prodYear, String company, String model, String status, LocalDateTime createdAt) {
-        this.carId = carId;
+    public Car(String category, String prodYear, String company, String model, String status, LocalDateTime createdAt) {
         this.category = category;
         this.prodYear = prodYear;
         this.company = company;
