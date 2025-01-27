@@ -13,9 +13,9 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 
     @Query("SELECT p FROM Car p " +
             "WHERE ( p.category = :category )" +
-            "AND (:model IS NULL OR p.model = :model) " +
-            "AND (:company IS NULL OR p.company = :company) " +
-            "AND (:prodYear IS NULL OR p.prodYear = :prodYear)")
+            "AND (:model = '' OR p.model = :model) " +
+            "AND (:company = '' OR p.company = :company) " +
+            "AND (:prodYear = '' OR p.prodYear = :prodYear)")
     Page<Car> findByDynamicConditions(
             @Param("pageRequest") PageRequest pageRequest,
             @Param("category") String category,
