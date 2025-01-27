@@ -12,12 +12,12 @@ import org.waveaway77.rentcar_admin.category.repository.CategoryRepository;
  * 전문정의 : admin 페이지의 카테고리 목록을 리턴한다
  */
 @RestController
-public class GetCategoryController {
+public class ReqCategoryController {
 
     @Autowired
     CategoryRepository repository;
 
-    @GetMapping("/getcategory")
+    @GetMapping("/category")
     public GetCategoryResponse getCategory() {
 
         /* 1. DB 조회 */
