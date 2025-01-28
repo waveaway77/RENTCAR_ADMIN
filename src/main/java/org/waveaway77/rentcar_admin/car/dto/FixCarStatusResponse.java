@@ -1,9 +1,9 @@
 package org.waveaway77.rentcar_admin.car.dto;
 
-import lombok.Setter;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-@Setter
+@Getter
 public class FixCarStatusResponse {
     private HttpStatus status;
 
