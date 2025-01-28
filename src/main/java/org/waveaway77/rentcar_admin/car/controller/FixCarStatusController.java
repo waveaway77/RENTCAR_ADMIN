@@ -12,8 +12,6 @@ import org.waveaway77.rentcar_admin.car.entity.Car;
 import org.waveaway77.rentcar_admin.car.repository.CarRepository;
 import org.waveaway77.rentcar_admin.rent.repository.RentRepository;
 
-import java.util.Optional;
-
 /**
  * 전문명 : 차량 상태 수정
  * 작성자 : 이지예
