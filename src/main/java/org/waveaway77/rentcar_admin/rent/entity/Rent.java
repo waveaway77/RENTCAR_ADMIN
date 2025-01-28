@@ -1,7 +1,7 @@
 package org.waveaway77.rentcar_admin.rent.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Table(name = "Rent")
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Getter
 public class Rent {
@@ -32,13 +33,4 @@ public class Rent {
     @Column(name = "status")
     private String status = "";
 
-    @Builder
-    public Rent(int rentId, int carId, int customerId, LocalDateTime rentStartDt, LocalDateTime returnEndDt, String status) {
-        this.rentId = rentId;
-        this.carId = carId;
-        this.customerId = customerId;
-        this.rentStartDt = rentStartDt;
-        this.returnEndDt = returnEndDt;
-        this.status = status;
-    }
 }
