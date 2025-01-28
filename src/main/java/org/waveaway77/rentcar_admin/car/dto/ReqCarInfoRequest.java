@@ -1,7 +1,6 @@
 package org.waveaway77.rentcar_admin.car.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
