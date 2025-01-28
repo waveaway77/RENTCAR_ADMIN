@@ -40,7 +40,7 @@ public class FixCarStatusController {
                     carRepository.updateCarStatus(request.getCarIdArray(), request.getStatus(), request.getUpdatedAt());
                     break;
 
-                case "RENTED" : // 반납 확인 후 진행
+                case "RENTED" : // 반납 확인 후 진행 가능
 
                     // 대여 정보 확인
                     String rentStatus = rentRepository.findByCarId(carId);
@@ -51,10 +51,12 @@ public class FixCarStatusController {
                     carRepository.updateCarStatus(request.getCarIdArray(), request.getStatus(), request.getUpdatedAt());
                     break;
 
-                case "CHECKING" : // 점검 완료 후에 진행
+                case "CHECKING" : // 점검 완료 후에 진행 가능
+                    // ...
                     break;
 
-                case "REPARING" : // 수리 여부 확인 후에 진행
+                case "REPARING" : // 수리 여부 확인 후에 진행 가능
+                    // ...
                     break;
 
                 default:
