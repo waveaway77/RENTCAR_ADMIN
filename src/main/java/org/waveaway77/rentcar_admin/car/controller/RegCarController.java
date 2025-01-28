@@ -13,6 +13,12 @@ import org.waveaway77.rentcar_admin.car.repository.CarRepository;
 
 import java.time.LocalDateTime;
 
+/**
+ * 전문명 : 차량 신규 등록
+ * 작성자 : 이지예
+ * 작성일자 : 2025.01.28
+ * 전문설명 : 차량 신규 등록
+ */
 @RestController
 public class RegCarController {
 
@@ -20,25 +26,32 @@ public class RegCarController {
     CarRepository repository;
 
     @PostMapping("/regcar")
-    public ResponseEntity<?> regCar(@RequestBody RegCarRequest request) throws Exception {
+    public RegCarResponse regCar(@RequestBody RegCarRequest request) throws Exception {
 
         /* 0. validation check */
-        if (request.getCategory().isEmpty() || request.getProdYear().isEmpty() || request.getCompany().isEmpty() || request.getStatus().isEmpty() || request.getModel().isEmpty()) {
-            // logger
-            throw new Exception();
+        if (request.getCategory().isEmpty()
+        || request.getProdYear().isEmpty()
+        || request.getCompany().isEmpty()
+        || request.getStatus().isEmpty()
+        || request.getModel().isEmpty()) {
+            throw new Exception("[regCar] validation check failed. request: "+request);
         }
 
-        /* insert into DB */
-        repository.save(Car.builder()
-                .category(request.getCategory())
-                .prodYear(request.getProdYear())
-                .company(request.getCompany())
-                .model(request.getModel())
-                .status(request.getStatus())
-                .createdAt(LocalDateTime.now())
-                .build());
+        /* 1. DB insert */
+        try {
+            repository.save(Car.builder()
+                    .category(request.getCategory())
+                    .prodYear(request.getProdYear())
+                    .company(request.getCompany())
+                    .model(request.getModel())
+                    .status(request.getStatus())
+                    .createdAt(LocalDateTime.now())
+                    .build());
+        } catch (Exception e) {
+            throw new Exception("[regCar] 차량 등록 실패. request: "+request);
+        }
 
-        RegCarResponse response = new RegCarResponse(HttpStatus.CREATED);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        /* 2. return response */
+        return new RegCarResponse(HttpStatus.CREATED);
     }
 }

@@ -26,9 +26,9 @@ public class FixCarInfoController {
 
         /* 0. validation check */
         if (request.getCategory().isEmpty()
-                || request.getProdYear().isEmpty()
-                || request.getCompany().isEmpty()
-                || request.getModel().isEmpty()) {
+        || request.getProdYear().isEmpty()
+        || request.getCompany().isEmpty()
+        || request.getModel().isEmpty()) {
             throw new Exception("[fixCarInfo] validation check failed");
         }
 
