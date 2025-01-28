@@ -56,9 +56,9 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
     @Modifying
     @Query("UPDATE Car c SET c.status = :status" +
             ", c.updatedAt = :updatedAt" +
-            " WHERE c.carId in (:carId)")
+            " WHERE c.carId = :carId")
     void updateCarStatus(
-            @Param("carId") int[] carId
+            @Param("carId") int carId
             , @Param("status") String status
             , @Param("updatedAt") LocalDateTime updatedAt
     );
