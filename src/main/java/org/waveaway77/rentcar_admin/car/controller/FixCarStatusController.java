@@ -79,6 +79,7 @@ public class FixCarStatusController {
 
         }
 
+        /* 3. return response */
         FixCarStatusResponse response = new FixCarStatusResponse(HttpStatus.OK);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
