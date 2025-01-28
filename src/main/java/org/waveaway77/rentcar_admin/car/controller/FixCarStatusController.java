@@ -33,7 +33,9 @@ public class FixCarStatusController {
     public ResponseEntity<?> fixCarStatus(@RequestBody FixCarStatusRequest request) throws Exception {
 
         /*0. validation check */
-        if (request.getCarIdArray().length == 0 || request.getStatus().isEmpty()) { throw new Exception("[fixCarStatus] Validation Check fail"); }
+        if (request.getCarIdArray().length == 0 || request.getStatus().isEmpty()) {
+            throw new Exception("[fixCarStatus] Validation Check fail");
+        }
 
         /*1. DB update */
         for (int carId : request.getCarIdArray()) {
@@ -44,28 +46,32 @@ public class FixCarStatusController {
 
             // 상태 수정
             switch (car.getStatus()) {
-                case "AVAILABLE" :
-                case "MISSING" :
+                case "AVAILABLE":
+                case "MISSING":
                     carRepository.updateCarStatus(carId, request.getStatus(), request.getUpdatedAt());
                     break;
 
-                case "RENTED" : // 반납 확인 후 진행 가능
+                case "RENTED": // 반납 확인 후 진행 가능
 
                     // 대여 정보 확인
                     String rentStatus = rentRepository.findByCarId(carId);
-                    if (rentStatus == null|| rentStatus.isEmpty()) { throw new Exception("[fixCarStatus] 렌트 정보 조회되지 않음. carId:"+carId); }
+                    if (rentStatus == null || rentStatus.isEmpty()) {
+                        throw new Exception("[fixCarStatus] 렌트 정보 조회되지 않음. carId:" + carId);
+                    }
                     // 변경 조건 확인
-                    if (!rentStatus.equals("RETURNED")) { throw new Exception("[fixCarStatus] 상태 변경은 반납 완료 후 가능합니다."); }
+                    if (!rentStatus.equals("RETURNED")) {
+                        throw new Exception("[fixCarStatus] 상태 변경은 반납 완료 후 가능합니다.");
+                    }
 
                     // 변경 진행
                     carRepository.updateCarStatus(carId, request.getStatus(), request.getUpdatedAt());
                     break;
 
-                case "CHECKING" : // 점검 완료 후에 진행 가능
+                case "CHECKING": // 점검 완료 후에 진행 가능
                     // ...
                     break;
 
-                case "REPARING" : // 수리 여부 확인 후에 진행 가능
+                case "REPARING": // 수리 여부 확인 후에 진행 가능
                     // ...
                     break;
 
