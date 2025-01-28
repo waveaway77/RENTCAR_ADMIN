@@ -28,7 +28,7 @@ public class FixCarStatusController {
     RentRepository rentRepository;
 
     @PostMapping("/fixcarstatus")
-    public ResponseEntity<?> fixCarStatus(@RequestBody FixCarStatusRequest request) throws Exception {
+    public FixCarStatusResponse fixCarStatus(@RequestBody FixCarStatusRequest request) throws Exception {
 
         /*0. validation check */
         if (request.getCarIdArray().length == 0 || request.getStatus().isEmpty()) {
@@ -80,7 +80,6 @@ public class FixCarStatusController {
         }
 
         /* 3. return response */
-        FixCarStatusResponse response = new FixCarStatusResponse(HttpStatus.OK);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new FixCarStatusResponse(HttpStatus.OK);
     }
 }
