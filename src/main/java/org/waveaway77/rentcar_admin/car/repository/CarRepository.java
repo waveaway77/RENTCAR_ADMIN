@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.waveaway77.rentcar_admin.car.entity.Car;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
