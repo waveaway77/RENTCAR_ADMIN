@@ -43,7 +43,7 @@ public class FixCarInfoController {
                     , request.getUpdatedAt()
             );
         } catch (Exception e) {
-            throw new Exception("[fixCarInfo] 차량정보 수정 실패. carId: " + request.getCarId());
+            throw new Exception("[fixCarInfo] 차량정보 수정 실패. request:" + request);
         }
 
         /* 2. return response */
