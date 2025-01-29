@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.waveaway77.rentcar_admin.car.dto.FixCarInfoRequest;
-import org.waveaway77.rentcar_admin.car.dto.FixCarInfoResponse;
+import org.waveaway77.rentcar_admin.car.dto.UpdtCarInfoRequest;
+import org.waveaway77.rentcar_admin.car.dto.UpdtCarInfoResponse;
 import org.waveaway77.rentcar_admin.car.repository.CarRepository;
 
 /**
@@ -16,13 +16,13 @@ import org.waveaway77.rentcar_admin.car.repository.CarRepository;
  * 전문설명 : 차량정보 단건 수정 (가능 항목:카테고리, 생산년도, 제조사, 모델)
  */
 @RestController
-public class FixCarInfoController {
+public class UpdtCarInfoController {
 
     @Autowired
     CarRepository repository;
 
     @PostMapping("/fixcarinfo")
-    public FixCarInfoResponse fixCarInfo(@RequestBody FixCarInfoRequest request) throws Exception {
+    public UpdtCarInfoResponse fixCarInfo(@RequestBody UpdtCarInfoRequest request) throws Exception {
 
         /* 0. validation check */
         if (request.getCategory().isEmpty()
@@ -47,6 +47,6 @@ public class FixCarInfoController {
         }
 
         /* 2. return response */
-        return new FixCarInfoResponse(HttpStatus.OK);
+        return new UpdtCarInfoResponse(HttpStatus.OK);
     }
 }

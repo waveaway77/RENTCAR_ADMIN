@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class FixCarInfoRequest {
+public class UpdtCarInfoRequest {
     private int carId;
     private String category = "";
     private String prodYear = "";
@@ -17,7 +17,7 @@ public class FixCarInfoRequest {
     private LocalDateTime updatedAt = LocalDateTime.now();
 
     @Builder
-    public FixCarInfoRequest(int carId, String category, String prodYear, String company, String model) {
+    public UpdtCarInfoRequest(int carId, String category, String prodYear, String company, String model) {
         this.carId = carId;
         this.category = category;
         this.prodYear = prodYear;

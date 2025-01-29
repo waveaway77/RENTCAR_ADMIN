@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.waveaway77.rentcar_admin.car.dto.FixCarInfoRequest;
-import org.waveaway77.rentcar_admin.car.dto.FixCarInfoResponse;
+import org.waveaway77.rentcar_admin.car.dto.UpdtCarInfoRequest;
+import org.waveaway77.rentcar_admin.car.dto.UpdtCarInfoResponse;
 import org.waveaway77.rentcar_admin.car.repository.CarRepository;
 
 import java.time.LocalDateTime;
@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class FixCarInfoControllerTest {
+public class UpdtCarInfoControllerTest {
 
     @InjectMocks
-    private FixCarInfoController controller;
+    private UpdtCarInfoController controller;
     @Mock
     private CarRepository repository;
 
@@ -26,9 +26,9 @@ public class FixCarInfoControllerTest {
     @DisplayName("차량 수정 되는지")
     public void withValidRequest_ShouldPass() throws Exception {
         // given
-        FixCarInfoRequest request = new FixCarInfoRequest(1, "101", "2025", "11", "마티즈");
+        UpdtCarInfoRequest request = new UpdtCarInfoRequest(1, "101", "2025", "11", "마티즈");
         // when
-        FixCarInfoResponse response = controller.fixCarInfo(request);
+        UpdtCarInfoResponse response = controller.fixCarInfo(request);
         // then
         assertNotNull(response);
     }
@@ -37,7 +37,7 @@ public class FixCarInfoControllerTest {
     @DisplayName("요청 파라미터 누락 시 validation check")
     public void withEmptyParameter_ShouldThrowException() throws Exception {
         // given
-        FixCarInfoRequest request = new FixCarInfoRequest(1, "", null, null, null);
+        UpdtCarInfoRequest request = new UpdtCarInfoRequest(1, "", null, null, null);
         // when
         Exception exception = assertThrows(Exception.class, () -> controller.fixCarInfo(request));
         // then
@@ -48,7 +48,7 @@ public class FixCarInfoControllerTest {
     @DisplayName("차량 수정 실패 시 throw exception 검증")
     public void whenSaveFails_ShouldThrowException() throws Exception {
         // given
-        FixCarInfoRequest request = new FixCarInfoRequest(1, "101", "2025", null, null);
+        UpdtCarInfoRequest request = new UpdtCarInfoRequest(1, "101", "2025", null, null);
         // when
         doNothing().when(repository).updateCarInfo(request.getCarId(), request.getCategory(), request.getProdYear(), request.getCompany(), request.getModel(), LocalDateTime.now());
         repository.updateCarInfo(request.getCarId(), request.getCategory(), request.getProdYear(), request.getCompany(), request.getModel(), LocalDateTime.now());

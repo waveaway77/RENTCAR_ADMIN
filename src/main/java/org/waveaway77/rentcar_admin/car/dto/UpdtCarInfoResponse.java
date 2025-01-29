@@ -4,10 +4,10 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
-public class FixCarInfoResponse {
+public class UpdtCarInfoResponse {
     private HttpStatus status;
 
-    public FixCarInfoResponse(HttpStatus status) {
+    public UpdtCarInfoResponse(HttpStatus status) {
         this.status = status;
     }
 }

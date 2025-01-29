@@ -6,7 +6,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.waveaway77.rentcar_admin.car.dto.ReqCarInfoResponse;
 import org.waveaway77.rentcar_admin.car.dto.ReqCarStatusRequest;
 import org.waveaway77.rentcar_admin.car.dto.ReqCarStatusResponse;
 import org.waveaway77.rentcar_admin.car.entity.Car;

@@ -5,13 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.waveaway77.rentcar_admin.car.dto.FixCarStatusRequest;
-import org.waveaway77.rentcar_admin.car.dto.FixCarStatusResponse;
-import org.waveaway77.rentcar_admin.car.entity.Car;
+import org.waveaway77.rentcar_admin.car.dto.UpdtCarStatusRequest;
+import org.waveaway77.rentcar_admin.car.dto.UpdtCarStatusResponse;
 import org.waveaway77.rentcar_admin.car.repository.CarRepository;
 import org.waveaway77.rentcar_admin.rent.repository.RentRepository;
-
-import java.time.LocalDateTime;
 
 /**
  * 전문명 : 다수 차량의 상태 수정
@@ -20,7 +17,7 @@ import java.time.LocalDateTime;
  * 전문설명 : 충족조건 확인 후 차량상태 업데이트
  */
 @RestController
-public class FixCarStatusController {
+public class UpdtCarStatusController {
 
     @Autowired
     CarRepository carRepository;
@@ -29,7 +26,7 @@ public class FixCarStatusController {
     RentRepository rentRepository;
 
     @PostMapping("/fixcarstatus")
-    public FixCarStatusResponse fixCarStatus(@RequestBody FixCarStatusRequest request) throws Exception {
+    public UpdtCarStatusResponse fixCarStatus(@RequestBody UpdtCarStatusRequest request) throws Exception {
 
         /*0. validation check */
         if (request.getCarIdArray().length == 0 || request.getStatus().isEmpty()) {
@@ -81,6 +78,6 @@ public class FixCarStatusController {
         }
 
         /* 3. return response */
-        return new FixCarStatusResponse(HttpStatus.OK);
+        return new UpdtCarStatusResponse(HttpStatus.OK);
     }
 }

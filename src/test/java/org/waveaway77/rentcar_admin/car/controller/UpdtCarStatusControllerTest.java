@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.waveaway77.rentcar_admin.car.dto.FixCarStatusRequest;
+import org.waveaway77.rentcar_admin.car.dto.UpdtCarStatusRequest;
 import org.waveaway77.rentcar_admin.car.repository.CarRepository;
 import org.waveaway77.rentcar_admin.rent.repository.RentRepository;
 
@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class FixCarStatusControllerTest {
+class UpdtCarStatusControllerTest {
 
     @InjectMocks
-    private FixCarStatusController controller;
+    private UpdtCarStatusController controller;
     @Mock(name = "carRepository")
     @Autowired
     private CarRepository carRepository;
@@ -37,7 +37,7 @@ class FixCarStatusControllerTest {
     public void withValueRequest_ShouldPass() throws Exception {
         // given
         int[] carIdArray = new int[]{1, 2};
-        FixCarStatusRequest request = new FixCarStatusRequest(carIdArray, "AVAILABLE");
+        UpdtCarStatusRequest request = new UpdtCarStatusRequest(carIdArray, "AVAILABLE");
 
         // when
         carRepository.updateCarStatus(carIdArray[0], request.getStatus());
@@ -51,7 +51,7 @@ class FixCarStatusControllerTest {
     public void withWrongId_ShouldNotPass() throws Exception {
         // given
         int[] carIdArray = new int[]{Integer.MAX_VALUE};
-        FixCarStatusRequest request = new FixCarStatusRequest(carIdArray, "RENTED");
+        UpdtCarStatusRequest request = new UpdtCarStatusRequest(carIdArray, "RENTED");
         // when
         Exception exception = assertThrows(Exception.class, () -> {
             controller.fixCarStatus(request);
@@ -65,7 +65,7 @@ class FixCarStatusControllerTest {
     public void withEmptyCarIdArrayParameter_ShouldNotPass() throws Exception {
         // given
         int[] emptyArray = new int[]{};
-        FixCarStatusRequest request = new FixCarStatusRequest(emptyArray, "AVAILABLE");
+        UpdtCarStatusRequest request = new UpdtCarStatusRequest(emptyArray, "AVAILABLE");
         // when
         Exception exception = assertThrows(Exception.class, () -> controller.fixCarStatus(request));
         // then

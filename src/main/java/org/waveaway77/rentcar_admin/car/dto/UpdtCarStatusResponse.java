@@ -6,10 +6,10 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @NoArgsConstructor
-public class FixCarStatusResponse {
+public class UpdtCarStatusResponse {
     private HttpStatus status;
 
-    public FixCarStatusResponse(HttpStatus status) {
+    public UpdtCarStatusResponse(HttpStatus status) {
         this.status = status;
     }
 
