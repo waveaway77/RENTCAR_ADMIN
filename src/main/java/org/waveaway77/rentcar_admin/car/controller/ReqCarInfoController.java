@@ -11,6 +11,7 @@ import org.waveaway77.rentcar_admin.car.dto.ReqCarInfoResponse;
 import org.waveaway77.rentcar_admin.car.entity.Car;
 import org.waveaway77.rentcar_admin.car.repository.CarRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,6 +60,11 @@ public class ReqCarInfoController {
             );
         } catch (Exception e) {
             throw new Exception("[carInfo] DB 조회 실패 "+request);
+        }
+
+        if (page.isEmpty()) { // 검색 결과 없을 경우
+            // return response
+            return new ArrayList<ReqCarInfoResponse>();
         }
 
         // Car to Response

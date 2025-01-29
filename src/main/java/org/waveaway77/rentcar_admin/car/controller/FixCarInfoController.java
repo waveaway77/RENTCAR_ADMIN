@@ -10,10 +10,10 @@ import org.waveaway77.rentcar_admin.car.dto.FixCarInfoResponse;
 import org.waveaway77.rentcar_admin.car.repository.CarRepository;
 
 /**
- * 전문명 : 차량 정보 수정
+ * 전문명 : 차량 정보 단건 수정
  * 작성자 : 이지예
  * 작성일자 : 2025.01.28
- * 전문설명 : 차량정보 업데이트
+ * 전문설명 : 차량정보 단건 수정 (가능 항목:카테고리, 생산년도, 제조사, 모델)
  */
 @RestController
 public class FixCarInfoController {

@@ -9,6 +9,11 @@ import org.waveaway77.rentcar_admin.rent.entity.Rent;
 @Repository
 public interface RentRepository extends JpaRepository<Rent, Integer> {
 
-    @Query("SELECT r.status FROM Rent r WHERE r.carId = :carId")
-    String findByCarId(int carId);
+    @Query(value = "SELECT r.status " +
+            "FROM Rent r " +
+            "WHERE r.car_id = :carId " +
+            "ORDER BY r.rent_start_dt DESC " +
+            "LIMIT 1",
+            nativeQuery = true)
+    String selectStatusByCarId(int carId);
 }

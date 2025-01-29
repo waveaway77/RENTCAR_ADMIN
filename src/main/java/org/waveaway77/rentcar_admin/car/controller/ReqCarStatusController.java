@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  *           페이징 처리.
  */
 @RestController
-public class ReqCarStatusContorller {
+public class ReqCarStatusController {
 
     @Autowired
     CarRepository repository;
@@ -47,6 +47,11 @@ public class ReqCarStatusContorller {
             page = repository.findByCategoryAndStatus(request.getCategory(), request.getSTATUS(), pageRequest);
         } catch (Exception e) {
             throw new Exception("[carByStatus] DB 조회 실패. category:"+request.getCategory());
+        }
+
+        if (page.isEmpty()) { // 검색 결과 없을 경우
+            // return response
+            return new ArrayList<ReqCarStatusResponse>();
         }
 
         /* 2. return response */

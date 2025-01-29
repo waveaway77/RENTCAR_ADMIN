@@ -40,7 +40,7 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
             ", c.prodYear = :prodYear" +
             ", c.company = :company" +
             ", c.model = :model" +
-            ", c.updatedAt = :updatedAt" +
+            ", c.updatedAt = CURRENT_TIMESTAMP" +
             " WHERE c.carId = :carId")
     void updateCarInfo(
             @Param("carId") int carId
@@ -54,12 +54,11 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
     @Transactional
     @Modifying
     @Query("UPDATE Car c SET c.status = :status" +
-            ", c.updatedAt = :updatedAt" +
+            ", c.updatedAt = CURRENT_TIMESTAMP" +
             " WHERE c.carId = :carId")
     void updateCarStatus(
             @Param("carId") int carId
             , @Param("status") String status
-            , @Param("updatedAt") LocalDateTime updatedAt
     );
 
 }

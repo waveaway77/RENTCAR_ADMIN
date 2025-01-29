@@ -1,5 +1,6 @@
 package org.waveaway77.rentcar_admin.car.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,15 @@ public class FixCarInfoRequest {
     private String company = "";
     private String model = "";
     private LocalDateTime updatedAt = LocalDateTime.now();
+
+    @Builder
+    public FixCarInfoRequest(int carId, String category, String prodYear, String company, String model) {
+        this.carId = carId;
+        this.category = category;
+        this.prodYear = prodYear;
+        this.company = company;
+        this.model = model;
+    }
 
     @Override
     public String toString() {
